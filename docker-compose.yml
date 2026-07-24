@@ -29,8 +29,6 @@ services:
     env_file:
       - .env
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/ecommerce
-      - SPRING_DATASOURCE_USERNAME=postgres
       - SPRING_DATA_REDIS_HOST=redis
       - SPRING_DATA_REDIS_PORT=6379
       # Ghi đè cấu hình để chạy trong Docker mạng ảo nếu cần
