@@ -39,6 +39,7 @@ public class SecurityConfig {
                                 "/api/v1/category",
                                 "/api/v1/product/search-home",
                                 "/api/v1/categories/tree",
+                                "/health",
                                 // VNPay callback — không có JWT (server-to-server hoặc browser redirect)
                                 "/api/v1/payments/vnpay/ipn",
                                 "/api/v1/payments/vnpay/return"
