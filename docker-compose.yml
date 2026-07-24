@@ -28,10 +28,6 @@ services:
     container_name: ecommerce_backend
     env_file:
       - .env
-    environment:
-      - SPRING_DATA_REDIS_HOST=redis
-      - SPRING_DATA_REDIS_PORT=6379
-      # Ghi đè cấu hình để chạy trong Docker mạng ảo nếu cần
     ports:
       - "8080:8080"
     depends_on:
@@ -63,7 +59,7 @@ services:
       dockerfile: Dockerfile
     container_name: ecommerce_frontend
     ports:
-      - "5173:80"  # Map port 80 trong container ra 5173 ngoài máy thật để khớp với VNPAY config hiện tại
+      - "5173:80" 
     depends_on:
       - backend
     restart: unless-stopped
