@@ -1,0 +1,26 @@
+/* ── Badge ảnh mới ── */
+.image-grid__item--new {
+    border-color: #2b80ed;
+}
+
+.image-grid__badge-new {
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    background: #2b80ed;
+    color: #fff;
+    font-size: 9px;
+    font-weight: 700;
+    padding: 2px 5px;
+    border-radius: 4px;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+}
+
+/* ── Nút hành động update ── */
+.product-update__actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    padding-top: 8px;
+}

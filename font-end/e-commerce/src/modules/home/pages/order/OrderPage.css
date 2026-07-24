@@ -1,0 +1,26 @@
+.order-page-container {
+  min-height: 100vh;
+  background-color: #f8f9fa;
+  font-family: 'Inter', sans-serif;
+  color: #111827;
+}
+
+.order-page-main {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 32px 40px;
+}
+
+.order-page-header {
+  margin-bottom: 28px;
+}
+.order-page-header h1 {
+  font-size: 28px;
+  font-weight: 800;
+  color: #111827;
+  margin-bottom: 4px;
+}
+.order-page-header p {
+  font-size: 14px;
+  color: #6b7280;
+}

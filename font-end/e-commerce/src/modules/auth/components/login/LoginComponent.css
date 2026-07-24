@@ -1,0 +1,250 @@
+/* =============================================
+   LoginComponent — Card Layout (như hình)
+   ============================================= */
+
+/* Nền toàn màn hình */
+.login-page-bg {
+  min-height: 100svh;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ede8f7;
+  padding: 32px 16px;
+  box-sizing: border-box;
+  text-align: left;
+}
+
+/* Card nổi, bo góc */
+.login-layout {
+  display: flex;
+  width: 860px;
+  max-width: 100%;
+  min-height: 480px;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.13),
+    0 2px 8px rgba(0, 0, 0, 0.07);
+}
+
+/* ── Bên trái: Panel đỏ ── */
+.login-panel {
+  position: relative;
+  flex: 1;
+  background: linear-gradient(135deg, #d0021b 0%, #ff4d6d 100%);
+  display: flex;
+  align-items: center;
+  padding: 40px 36px;
+  overflow: hidden;
+}
+
+/* Blob shapes */
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.22;
+}
+.blob-1 {
+  width: 280px;
+  height: 280px;
+  background: #ff6b87;
+  top: -80px;
+  left: -60px;
+}
+.blob-2 {
+  width: 220px;
+  height: 220px;
+  background: #b80018;
+  bottom: 20px;
+  right: -60px;
+}
+.blob-3 {
+  width: 160px;
+  height: 160px;
+  background: #ff8fa3;
+  top: 38%;
+  left: 28%;
+}
+
+/* Đường contour lượn sóng */
+.login-panel::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg width='500' height='500' viewBox='0 0 500 500' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M-20 380 Q120 280 260 360 Q400 440 520 360' stroke='rgba(255,255,255,0.13)' stroke-width='1.8' fill='none'/%3E%3Cpath d='M-20 420 Q120 320 260 400 Q400 480 520 400' stroke='rgba(255,255,255,0.10)' stroke-width='1.8' fill='none'/%3E%3Cpath d='M-20 340 Q120 240 260 320 Q400 400 520 320' stroke='rgba(255,255,255,0.08)' stroke-width='1.8' fill='none'/%3E%3Cpath d='M-20 460 Q120 360 260 440 Q400 520 520 440' stroke='rgba(255,255,255,0.07)' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: cover;
+  pointer-events: none;
+}
+
+/* Dấu + trang trí */
+.deco { position: absolute; color: rgba(255, 255, 255, 0.6); }
+.deco-plus { font-size: 20px; font-weight: 300; line-height: 1; }
+.deco-plus-1 { top: 36px; left: 28px; }
+.deco-plus-2 { bottom: 100px; left: 42%; }
+
+/* Vòng trang trí */
+.deco-circle {
+  display: block;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255, 255, 255, 0.5);
+}
+.deco-circle-1 { width: 22px; height: 22px; bottom: 52px; left: 32px; }
+.deco-circle-2 { width: 18px; height: 18px; top: 100px; right: 52px; }
+
+/* Chấm dots */
+.deco-dots {
+  position: absolute;
+  top: 36px;
+  right: 36px;
+  width: 72px;
+  height: 54px;
+  background-image: radial-gradient(circle, rgba(255,255,255,0.5) 1.5px, transparent 1.5px);
+  background-size: 11px 11px;
+}
+
+/* Text panel */
+.panel-content {
+  position: relative;
+  z-index: 1;
+}
+.panel-title {
+  font-size: 28px !important;
+  font-weight: 800 !important;
+  color: #ffffff !important;
+  margin: 0 0 10px !important;
+  letter-spacing: -0.3px !important;
+  line-height: 1.2 !important;
+}
+.panel-sub {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.85);
+  margin: 0;
+  line-height: 1.6;
+  max-width: 240px;
+}
+
+/* ── Bên phải: Form ── */
+.login-form-side {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  padding: 40px 36px;
+  box-sizing: border-box;
+}
+.login-form-inner {
+  width: 100%;
+  max-width: 320px;
+}
+.login-form-title {
+  font-size: 26px !important;
+  font-weight: 700 !important;
+  color: #111827 !important;
+  margin: 0 0 28px !important;
+  letter-spacing: -0.3px !important;
+}
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Toggle ẩn/hiện mật khẩu */
+.pwd-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: transparent;
+  color: #9ca3af;
+  cursor: pointer;
+  padding: 0;
+  transition: color 0.15s;
+}
+.pwd-toggle:hover { color: #374151; }
+
+.field-icon { font-size: 14px; line-height: 1; }
+
+/* Remember me + Forgot */
+.login-options {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: -2px;
+}
+.remember-me {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: #6b7280;
+  cursor: pointer;
+  user-select: none;
+}
+.remember-me input[type="checkbox"] {
+  accent-color: #d0021b;
+  width: 14px;
+  height: 14px;
+  cursor: pointer;
+}
+.forgot-link {
+  font-size: 13px;
+  color: #d0021b;
+  text-decoration: none;
+  font-weight: 500;
+  transition: opacity 0.15s;
+}
+.forgot-link:hover { opacity: 0.72; }
+
+/* Nút đăng nhập full-width */
+.login-btn-full { width: 100%; margin-top: 4px; }
+.login-btn-full .btn { width: 100%; padding: 12px 28px; font-size: 15px; }
+
+/* Link đăng ký */
+.login-register-link {
+  text-align: center;
+  font-size: 13.5px;
+  color: #6b7280;
+  margin-top: 20px;
+}
+.login-register-link a {
+  color: #d0021b;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+.login-register-link a:hover { opacity: 0.72; }
+
+/* Responsive */
+@media (max-width: 640px) {
+  .login-layout { flex-direction: column; border-radius: 16px; }
+  .login-panel {
+    flex: none;
+    min-height: 200px;
+    align-items: flex-start;
+    padding: 32px 28px;
+  }
+  .panel-title { font-size: 22px !important; }
+  .login-form-side { padding: 32px 24px; }
+}
+
+/* Toast Container cố định ở góc trên phải */
+.login-toast-container {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  pointer-events: none;
+}
+
+.login-toast-container > * {
+  pointer-events: auto;
+}

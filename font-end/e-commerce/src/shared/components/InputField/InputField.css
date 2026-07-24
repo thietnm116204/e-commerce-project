@@ -1,0 +1,114 @@
+/* =============================================
+   InputField - Shared Component Styles
+   ============================================= */
+
+.input-field-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+}
+
+/* Label */
+.input-field-label {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #374151;
+  letter-spacing: 0.01em;
+  text-align: left;
+}
+
+/* Container (border box) */
+.input-field-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  background-color: #ffffff;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  padding: 8px 14px;
+  height: 38px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  box-sizing: border-box;
+}
+
+/* Focused state */
+.input-field-container.focused {
+  border-color: #a0aec0;
+  box-shadow: 0 0 0 3px rgba(160, 174, 192, 0.15);
+  outline: none;
+}
+
+/* Error state */
+.input-field-container.has-error {
+  border-color: #fc8181;
+  box-shadow: 0 0 0 3px rgba(252, 129, 129, 0.15);
+}
+
+/* Disabled state */
+.input-field-container.disabled {
+  background-color: #f9fafb;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+/* Native input element */
+.input-field-element {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 14px;
+  color: #1a1a2e;
+  font-family: inherit;
+  line-height: 1.5;
+  padding: 0;
+  margin: 0;
+  caret-color: #667eea;
+}
+
+.input-field-element::placeholder {
+  color: #b0b7c3;
+  font-weight: 400;
+}
+
+/* Date input: mờ khi chưa chọn */
+.input-field-wrapper.date-empty .input-field-element {
+  color: #b0b7c3;
+}
+
+.input-field-wrapper.date-empty .input-field-element::-webkit-datetime-edit {
+  color: #b0b7c3;
+}
+
+.input-field-element:disabled {
+  cursor: not-allowed;
+  color: #9ca3af;
+}
+
+/* Icons */
+.input-field-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #b0b7c3;
+  flex-shrink: 0;
+  font-size: 18px;
+  transition: color 0.2s ease;
+}
+
+.input-field-container.focused .input-field-icon {
+  color: #667eea;
+}
+
+/* Error message */
+.input-field-error {
+  font-size: 12.5px;
+  color: #e53e3e;
+  font-weight: 400;
+  margin-top: 2px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}

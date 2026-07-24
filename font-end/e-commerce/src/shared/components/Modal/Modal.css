@@ -1,0 +1,72 @@
+.adm-modal-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.adm-modal {
+    background: #fff;
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    display: flex;
+    flex-direction: column;
+}
+
+.adm-modal-header {
+    padding: 20px 24px;
+    border-bottom: 1px solid #e5e7eb;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.adm-modal-header h3 {
+    margin: 0;
+    font-size: 18px;
+    color: #1f2937;
+    font-weight: 600;
+}
+
+.adm-modal-close {
+    background: transparent;
+    border: none;
+    font-size: 24px;
+    line-height: 1;
+    color: #9ca3af;
+    cursor: pointer;
+}
+
+.adm-modal-close:hover {
+    color: #4b5563;
+}
+
+.adm-modal-body {
+    padding: 24px;
+    flex: 1;
+    overflow-y: auto;
+}
+
+.adm-modal-footer {
+    padding: 16px 24px;
+    border-top: 1px solid #e5e7eb;
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+}
+/* ── Modal size variants ── */
+.adm-modal--sm {
+    max-width: 380px;
+}
+
+.adm-modal--md {
+    max-width: 560px;
+}
+
+.adm-modal--lg {
+    max-width: 800px;
+}

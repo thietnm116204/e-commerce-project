@@ -1,0 +1,226 @@
+.navbar-home-wrapper {
+  --ink: #14171F;
+  --bg: #F7F7F5;
+  --surface: #FFFFFF;
+  --accent: #FF4520;
+  --accent-2: #DCF454;
+  --muted: #6E7180;
+  --line: #E7E6E1;
+  --shadow-sm: 0 2px 8px rgba(20, 23, 31, 0.06);
+  --shadow-md: 0 12px 28px rgba(20, 23, 31, 0.10);
+  --shadow-lg: 0 24px 60px rgba(20, 23, 31, 0.16);
+  
+  width: 100%;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(247, 247, 245, 0.75);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--line);
+}
+
+.navbar-home {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 56px;
+  max-width: 100%;
+}
+
+.navbar-home .logo {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 22px;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.navbar-home .nav-links {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ink);
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-home .nav-links a {
+  color: var(--ink);
+  text-decoration: none;
+  opacity: 0.75;
+  transition: opacity .15s;
+}
+
+.navbar-home .nav-links a:hover {
+  opacity: 1;
+}
+
+.navbar-home .nav-right {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.navbar-home .icon-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-sm);
+  position: relative;
+  cursor: pointer;
+  padding: 0;
+}
+
+.navbar-home .icon-btn img {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+}
+
+.navbar-home .icon-btn .dot {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* --- Dropdown Styles --- */
+.user-dropdown-container {
+  position: relative;
+}
+
+.user-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 12px);
+  right: 0;
+  width: 260px;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  border: 1px solid var(--line);
+  padding: 16px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all 0.2s ease;
+}
+
+.user-dropdown-menu.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* Mũi tên trỏ lên (Triangle) */
+.user-dropdown-menu::before {
+  content: "";
+  position: absolute;
+  top: -6px;
+  right: 18px;
+  width: 12px;
+  height: 12px;
+  background: #ffffff;
+  border-left: 1px solid var(--line);
+  border-top: 1px solid var(--line);
+  transform: rotate(45deg);
+}
+
+.dropdown-user-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.dropdown-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #6c9a40; /* Màu nền giống màu xanh lá của ảnh */
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  font-weight: 500;
+  object-fit: cover;
+}
+
+.dropdown-user-details {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: flex-start;
+}
+
+.dropdown-username {
+  font-size: 15px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.dropdown-email {
+  font-size: 13px;
+  color: #6B7280;
+}
+
+.dropdown-divider {
+  height: 1px;
+  background: #F3F4F6;
+  margin: 12px -16px;
+}
+
+.dropdown-action-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 10px 0;
+  background: transparent;
+  border: none;
+  color: #374151;
+  font-size: 15px;
+  font-weight: 400;
+  cursor: pointer;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.dropdown-action-btn:hover {
+  color: #111827;
+}
+
+.dropdown-action-btn svg {
+  color: #4B5563;
+  width: 20px;
+  height: 20px;
+}
+
+.dropdown-action-btn.logout-btn {
+  color: #EF4444;
+}
+
+.dropdown-action-btn.logout-btn svg {
+  color: #EF4444;
+}
+
+.dropdown-action-btn.logout-btn:hover {
+  color: #DC2626;
+}

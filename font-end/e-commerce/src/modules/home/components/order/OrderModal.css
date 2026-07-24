@@ -1,0 +1,134 @@
+.order-modal-form .form-group {
+    margin-bottom: 16px;
+}
+
+/* Label với icon */
+.form-label {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    margin-bottom: 8px;
+    font-weight: 600;
+    font-size: 13px;
+    color: #374151;
+}
+
+.label-icon {
+    width: 15px;
+    height: 15px;
+    object-fit: contain;
+    opacity: 0.7;
+    flex-shrink: 0;
+}
+
+.order-modal-form .text-danger {
+    color: #ef4444;
+}
+
+.order-modal-form .form-control {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    font-size: 14px;
+    color: #111827;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    box-sizing: border-box;
+    background: #fafafa;
+}
+
+.order-modal-form .form-control:focus {
+    outline: none;
+    border-color: #4f46e5;
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.08);
+    background: #fff;
+}
+
+.order-modal-form textarea.form-control {
+    resize: vertical;
+}
+
+/* ── Payment Method Card Selector ── */
+.payment-method-options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.payment-option {
+    display: flex;
+    align-items: center;
+    padding: 12px 14px;
+    border: 1.5px solid #e5e7eb;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+    background: #fafafa;
+    user-select: none;
+}
+
+.payment-option:hover {
+    border-color: #a5b4fc;
+    background: #f5f3ff;
+}
+
+.payment-option.selected {
+    border-color: #4f46e5;
+    background: #eef2ff;
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.08);
+}
+
+.payment-option input[type="radio"] {
+    display: none; /* ẩn radio mặc định, dùng card style */
+}
+
+.payment-option__content {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.payment-option__icon {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+.payment-option__title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #111827;
+    margin: 0 0 2px;
+}
+
+.payment-option__desc {
+    font-size: 12px;
+    color: #6b7280;
+    margin: 0;
+}
+
+/* VNPay hint */
+.payment-method-hint {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    margin-top: 10px;
+    padding: 8px 12px;
+    background: #eff6ff;
+    border: 1px solid #bfdbfe;
+    border-radius: 8px;
+    font-size: 12px;
+    color: #1d4ed8;
+    line-height: 1.5;
+}
+
+/* ── Actions ── */
+.order-modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 24px;
+    padding-top: 16px;
+    border-top: 1px solid #f3f4f6;
+}

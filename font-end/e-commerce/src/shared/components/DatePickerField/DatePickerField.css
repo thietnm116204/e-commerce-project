@@ -1,0 +1,78 @@
+/* Ẩn native calendar indicator, dùng icon tùy chỉnh */
+.date-picker-field .input-field-element::-webkit-calendar-picker-indicator {
+  opacity: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 36px;
+  height: 100%;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.date-picker-field .input-field-container {
+  position: relative;
+}
+
+/* Placeholder mờ khi chưa chọn */
+.date-picker-field.date-empty .input-field-element {
+  color: #b0b7c3;
+}
+.date-picker-field.date-empty .input-field-element::-webkit-datetime-edit {
+  color: #b0b7c3;
+}
+
+/* Wrapper 2 nút */
+.date-picker-icons {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  position: relative;
+  z-index: 3;
+}
+
+/* Nút × xóa — hình tròn */
+.date-picker-clear {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: none;
+  background: #d1d5db;
+  color: #374151;
+  font-size: 15px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0;
+  flex-shrink: 0;
+  transition: background 0.15s, color 0.15s;
+}
+
+.date-picker-clear:hover {
+  background: #9ca3af;
+  color: #fff;
+}
+
+/* Nút icon lịch */
+.date-picker-cal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  flex-shrink: 0;
+  opacity: 0.5;
+  transition: opacity 0.15s;
+}
+
+.date-picker-cal:hover {
+  opacity: 1;
+}
+
+.date-picker-cal img {
+  display: block;
+}

@@ -1,0 +1,37 @@
+/* AdminSidebar — chỉ chứa brand header + bọc nav */
+
+.sidebar {
+    width: 210px;
+    min-height: 100vh;
+    background: #09172F;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    transition: margin-left 0.3s ease;
+}
+
+.sidebar--closed {
+    margin-left: -210px;
+}
+
+.sidebar__brand {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.sidebar__brand-logo {
+    width: 22px;
+    height: 22px;
+    object-fit: contain;
+    filter: brightness(0) invert(1);
+    flex-shrink: 0;
+}
+
+.sidebar__brand-name {
+    color: #fff;
+    font-weight: 700;
+    font-size: 15px;
+}

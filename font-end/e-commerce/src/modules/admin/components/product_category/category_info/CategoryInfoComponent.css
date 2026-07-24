@@ -1,0 +1,230 @@
+/* ── CategoryInfoComponent ── */
+
+.cat-info {
+    padding: 0;
+}
+
+.cat-info__filters {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    align-items: start;
+}
+
+/* Responsive cho màn hình nhỏ */
+@media (max-width: 1024px) {
+    .cat-info__filters {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 640px) {
+    .cat-info__filters {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ── Actions ── */
+.cat-info__actions {
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;        /* xuống dòng khi không đủ chỗ */
+    gap: 10px;
+    margin-top: 16px;
+}
+
+@media (max-width: 480px) {
+    .cat-info__actions {
+        justify-content: stretch;
+    }
+
+    .cat-info__actions > * {
+        flex: 1;
+        min-width: 0;
+        justify-content: center;
+    }
+}
+
+/* ── Card ── */
+.cat-card {
+    background: #ffffff;
+    border-radius: 10px;
+    padding: 10px 20px 24px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+}
+
+/* ── Card title với thanh xanh bên trái ── */
+.cat-card__title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 16px;
+    font-weight: 700;
+    color: #1f2937;
+    margin: 0 0 12px;
+}
+
+.cat-card__title::before {
+    content: "";
+    width: 4px;
+    height: 16px;
+    background: #2563eb;
+    border-radius: 2px;
+    flex-shrink: 0;
+}
+
+.cat-info__btn-img-icon {
+    width: 16px;
+    height: 16px;
+    object-fit: contain;
+    filter: brightness(0) invert(1);
+}
+
+/* ── Column cell styles (used in AdminTable column renderers) ── */
+.cat-info__slug {
+    background: #f1f5f9;
+    color: #475569;
+    padding: 2px 7px;
+    border-radius: 4px;
+    font-size: 12.5px;
+    font-family: "Fira Mono", "Consolas", monospace;
+}
+
+.cat-info__none {
+    color: #d1d5db;
+}
+
+.cat-info__time {
+    color: #6b7280;
+    font-size: 12.5px;
+    white-space: nowrap;
+}
+
+.cat-info__badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.cat-info__badge--active {
+    background: #dcfce7;
+    color: #16a34a;
+}
+
+.cat-info__badge--inactive {
+    background: #fee2e2;
+    color: #dc2626;
+}
+
+/* ── Field ── */
+.cat-field {
+    margin-bottom: 18px;
+}
+
+.cat-field label {
+    display: block;
+    font-size: 13.5px;
+    font-weight: 600;
+    color: #374151;
+    margin-bottom: 2px;
+}
+
+.cat-field__required {
+    color: #ef4444;
+    margin-left: 2px;
+}
+
+.cat-field input {
+    width: 100%;
+    padding: 10px 12px;
+    font-size: 14px;
+    font-family: inherit;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    outline: none;
+    transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.cat-field input:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+.cat-field__hint {
+    font-size: 12px;
+    color: #9ca3af;
+    margin-top: 5px;
+}
+
+/* ── Actions ── */
+.cat-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 8px;
+}
+
+.cat-btn {
+    flex: 1;
+    padding: 10px 16px;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: inherit;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.15s, opacity 0.15s;
+}
+
+.cat-btn--primary {
+    background: #2563eb;
+    color: #fff;
+}
+
+.cat-btn--primary:hover {
+    background: #1d4ed8;
+}
+
+.cat-btn--secondary {
+    background: #fff;
+    color: #374151;
+    border: 1px solid #d1d5db;
+}
+
+.cat-btn--secondary:hover {
+    background: #f3f4f6;
+}
+
+/* Toast Container cố định ở góc trên phải */
+.cat-info-toast-container {
+    position: fixed;
+    top: 24px;
+    right: 24px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    pointer-events: none;
+}
+
+.cat-info-toast-container > * {
+    pointer-events: auto;
+}
+
+.cat-info__badge--clickable {
+    cursor: pointer;
+    transition: opacity 0.2s, filter 0.2s;
+    user-select: none;
+}
+
+.cat-info__badge--clickable:hover {
+    opacity: 0.8;
+    filter: brightness(0.95);
+}
+
+.cat-info__badge--clickable:active {
+    opacity: 0.6;
+}

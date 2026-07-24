@@ -1,0 +1,45 @@
+/* ── AdminLayout — khung giao diện admin ── */
+
+.admin-layout {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    background: #f0f2f5;
+    z-index: 10;
+}
+
+.admin-layout__main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 0; /* tránh tràn layout khi sidebar co lại */
+}
+
+.admin-layout__content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 16px 20px;
+}
+
+.admin-layout__page-header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    margin-bottom: 16px;
+    padding: 12px 20px;
+    background: #ffffff;
+    border-bottom: 1px solid #E2E8F0;
+    margin-left: -20px;
+    margin-right: -20px;
+    margin-top: -16px;
+}
+
+.admin-layout__page-title {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.2;
+    color: #0F172A;
+    letter-spacing: -0.01em;
+}

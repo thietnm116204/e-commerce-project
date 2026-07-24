@@ -1,0 +1,212 @@
+/* ── AdminNavbar ── */
+
+.admin-navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 48px;
+    padding: 0 16px;
+    background: #ffffff;
+    border-bottom: 1px solid #E2E8F0;
+    flex-shrink: 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+/* ── Toggle sidebar button ── */
+.admin-navbar__icon-btn {
+    position: relative;
+    width: 32px;
+    height: 32px;
+    border: none;
+    border-radius: 8px;
+    background: transparent;
+    color: #64748B;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s, color 0.15s;
+}
+
+.admin-navbar__icon-btn svg {
+    width: 17px;
+    height: 17px;
+}
+
+.admin-navbar__icon-btn:hover {
+    background: #F1F5F9;
+    color: #0F172A;
+}
+
+/* ── Actions group (phải) ── */
+.admin-navbar__actions {
+    display: flex;
+    align-items: center;
+}
+
+/* ── Dropdown wrapper ── */
+.admin-navbar__dropdown-wrap {
+    position: relative;
+}
+
+/* ── Dropdown panel ── */
+.admin-navbar__dropdown {
+    position: absolute;
+    right: 0;
+    top: calc(100% + 8px);
+    background: #fff;
+    border: 1px solid #E2E8F0;
+    border-radius: 14px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12);
+    z-index: 200;
+    overflow: hidden;
+    animation: navbar-dropdown-in 0.15s ease;
+}
+
+@keyframes navbar-dropdown-in {
+    from { opacity: 0; transform: translateY(-6px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── User button ── */
+.admin-navbar__user-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 4px 8px 4px 4px;
+    border: none;
+    border-radius: 8px;
+    background: transparent;
+    cursor: pointer;
+    transition: background 0.15s;
+}
+
+.admin-navbar__user-btn:hover,
+.admin-navbar__user-btn--active {
+    background: #F1F5F9;
+}
+
+/* ── Avatar ── */
+.admin-navbar__avatar {
+    border-radius: 50%;
+    background: linear-gradient(135deg, #6366F1, #4F46E5);
+    color: #fff;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    overflow: hidden;
+}
+
+.admin-navbar__avatar--sm {
+    width: 28px;
+    height: 28px;
+    font-size: 11px;
+}
+
+.admin-navbar__avatar--lg {
+    width: 36px;
+    height: 36px;
+    font-size: 14px;
+}
+
+/* Avatar dạng ảnh */
+.admin-navbar__avatar--img {
+    object-fit: cover;
+    background: #E2E8F0;
+}
+
+.admin-navbar__username {
+    font-size: 13px;
+    font-weight: 600;
+    color: #1E293B;
+    white-space: nowrap;
+}
+
+.admin-navbar__chevron {
+    display: flex;
+    align-items: center;
+    color: #94A3B8;
+    transition: transform 0.2s;
+}
+
+.admin-navbar__chevron svg {
+    width: 14px;
+    height: 14px;
+}
+
+.admin-navbar__chevron--up {
+    transform: rotate(180deg);
+}
+
+/* ── User dropdown ── */
+.admin-navbar__dropdown--user {
+    width: 240px;
+}
+
+.admin-navbar__user-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px;
+}
+
+.admin-navbar__user-name {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 600;
+    color: #0F172A;
+}
+
+.admin-navbar__user-role {
+    margin: 3px 0 0;
+    font-size: 12px;
+    color: #64748B;
+    word-break: break-all;
+}
+
+.admin-navbar__divider {
+    margin: 0;
+    border: none;
+    border-top: 1px solid #F1F5F9;
+}
+
+/* ── Menu items ── */
+.admin-navbar__menu-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    padding: 11px 16px;
+    border: none;
+    background: transparent;
+    font-size: 14px;
+    font-family: inherit;
+    color: #374151;
+    cursor: pointer;
+    text-align: left;
+    transition: background 0.15s;
+}
+
+.admin-navbar__menu-item svg {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+}
+
+.admin-navbar__menu-item:hover {
+    background: #F8FAFC;
+    color: #0F172A;
+}
+
+.admin-navbar__menu-item--danger {
+    color: #EF4444;
+}
+
+.admin-navbar__menu-item--danger:hover {
+    background: #FEF2F2;
+    color: #DC2626;
+}

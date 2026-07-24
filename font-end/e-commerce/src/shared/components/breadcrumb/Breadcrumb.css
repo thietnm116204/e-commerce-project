@@ -1,0 +1,79 @@
+.breadcrumb {
+    display: flex;
+    align-items: center;
+    font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.breadcrumb__list {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    white-space: nowrap;
+    gap: 6px;
+}
+
+.breadcrumb__item-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.breadcrumb__text {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    border: 0;
+    background: transparent;
+    font: inherit;
+    line-height: 1.5;
+    padding: 4px 6px;
+    border-radius: 6px;
+    color: #64748B;
+    transition: all 0.2s ease;
+    cursor: default;
+    margin: 0 -6px; /* Negate padding so it aligns perfectly with the left edge */
+}
+
+/* Sửa lại padding/margin cho các item không phải item đầu tiên để giãn cách đều */
+.breadcrumb__item-wrapper + .breadcrumb__item-wrapper .breadcrumb__text {
+    margin: 0;
+}
+
+.breadcrumb__home-icon {
+    flex-shrink: 0;
+    color: #94A3B8;
+    transition: color 0.2s ease;
+}
+
+.breadcrumb__text--clickable {
+    cursor: pointer;
+}
+
+.breadcrumb__text--clickable:hover {
+    color: #0F172A;
+    background-color: #F1F5F9;
+}
+
+.breadcrumb__text--clickable:hover .breadcrumb__home-icon {
+    color: #0F172A;
+}
+
+.breadcrumb__text--active {
+    color: #0F172A;
+    font-weight: 500;
+}
+
+.breadcrumb__separator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #CBD5E1;
+}
+
+.breadcrumb__separator svg {
+    display: block;
+}

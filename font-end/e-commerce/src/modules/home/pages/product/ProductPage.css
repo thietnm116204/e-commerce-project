@@ -1,0 +1,12 @@
+.product-page-container {
+  min-height: 100vh;
+  background-color: #F8F9FA; /* Nền xám nhạt như hình */
+  font-family: 'Inter', sans-serif;
+  color: #111827;
+}
+
+.product-page-main {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 32px 56px;
+}

@@ -1,0 +1,116 @@
+:root {
+    --sidebar-bg: #09172F;
+    --sidebar-active: #1C293F;
+    --text-primary: #DADFDF;
+    --text-muted: #6C7382;
+}
+
+.nav {
+    width: 210px;
+    background: var(--sidebar-bg);
+    padding: 8px 0;
+}
+
+/* ── Nav item ───────────────────── */
+.nav-item {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 16px;
+    background: transparent;
+    border: none;
+    color: var(--text-primary);
+    font-size: 13px;
+    font-weight: 500;
+    font-family: inherit;
+    cursor: pointer;
+    text-align: left;
+    transition: background-color 0.15s ease;
+}
+
+.nav-item:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.nav-item.active {
+    background: var(--sidebar-active);
+}
+
+/* ── Icons ──────────────────────── */
+.nav-item__icon {
+    width: 15px;
+    height: 15px;
+    flex-shrink: 0;
+}
+
+.nav-item__label {
+    flex: 1;
+}
+
+.nav-item__chevron {
+    width: 16px;
+    height: 16px;
+    opacity: 0.6;
+}
+
+/* img chevron cần filter trắng */
+.nav-item__chevron--img {
+    object-fit: contain;
+    filter: brightness(0) invert(1);
+}
+
+/* ── Accordion ──────────────────── */
+.nav-accordion {
+    width: 100%;
+}
+
+.nav-submenu {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.25s ease;
+}
+
+.nav-submenu--open {
+    max-height: 300px;
+}
+
+/* ── Submenu item ───────────────── */
+.nav-subitem {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 8px 16px 8px 40px;
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    font-size: 13px;
+    font-weight: 400;
+    font-family: inherit;
+    cursor: pointer;
+    text-align: left;
+    transition: color 0.15s, background 0.15s;
+}
+
+.nav-subitem:hover {
+    background: rgba(255, 255, 255, 0.04);
+    color: var(--text-primary);
+}
+
+.nav-subitem.active {
+    color: #ffffff;
+    font-weight: 600;
+    position: relative;
+}
+
+.nav-subitem.active::before {
+    content: "";
+    position: absolute;
+    left: 22px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 3px;
+    height: 12px;
+    background: #6366F1;
+    border-radius: 999px;
+}

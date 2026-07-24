@@ -1,0 +1,159 @@
+/* ── VNPay Return Page ── */
+.vnpay-return-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f0f9ff 0%, #f5f3ff 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.vnpay-return-card {
+  background: #fff;
+  border-radius: 24px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.10);
+  padding: 56px 48px;
+  max-width: 480px;
+  width: 100%;
+  text-align: center;
+  animation: fadeInUp 0.4s ease;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Icon wrapper ── */
+.vnpay-return-icon-wrap {
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 28px;
+}
+.vnpay-return-icon-wrap.success { background: #dcfce7; }
+.vnpay-return-icon-wrap.failed  { background: #fee2e2; }
+
+.vnpay-return-icon-img {
+  width: 46px;
+  height: 46px;
+  object-fit: contain;
+}
+
+/* Order ID chip */
+.vnpay-return-order-id {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #f3f4f6;
+  border-radius: 8px;
+  padding: 6px 14px;
+  font-size: 13px;
+  color: #374151;
+  margin-bottom: 16px;
+}
+.vnpay-return-order-icon {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+  opacity: 0.6;
+}
+
+/* Button icons */
+.btn-vnpay-icon {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+  flex-shrink: 0;
+}
+.btn-vnpay-icon.dark {
+  filter: none;
+  opacity: 0.6;
+}
+
+/* ── Title ── */
+.vnpay-return-title {
+  font-size: 26px;
+  font-weight: 800;
+  margin-bottom: 12px;
+  line-height: 1.2;
+}
+.vnpay-return-title.success { color: #15803d; }
+.vnpay-return-title.failed  { color: #b91c1c; }
+
+/* ── Description ── */
+.vnpay-return-desc {
+  font-size: 15px;
+  color: #6b7280;
+  margin-bottom: 16px;
+  line-height: 1.6;
+}
+
+/* ── Order ID chip ── */
+.vnpay-return-order-id {
+  display: inline-block;
+  background: #f3f4f6;
+  border-radius: 8px;
+  padding: 6px 14px;
+  font-size: 13px;
+  color: #374151;
+  margin-bottom: 16px;
+}
+
+/* ── Countdown ── */
+.vnpay-return-countdown {
+  font-size: 13px;
+  color: #9ca3af;
+  margin-bottom: 28px;
+}
+.vnpay-return-countdown strong { color: #15803d; }
+
+/* ── Note (for failed) ── */
+.vnpay-return-note {
+  font-size: 13px;
+  color: #9ca3af;
+  margin-bottom: 28px;
+  line-height: 1.6;
+}
+
+/* ── Action Buttons ── */
+.vnpay-return-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn-vnpay-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 28px;
+  background: linear-gradient(135deg, #4f46e5, #7c3aed);
+  color: #fff;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: opacity 0.2s, transform 0.1s;
+}
+.btn-vnpay-primary:hover { opacity: 0.9; transform: translateY(-2px); }
+
+.btn-vnpay-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 28px;
+  background: #f3f4f6;
+  color: #374151;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+.btn-vnpay-secondary:hover { background: #e5e7eb; }

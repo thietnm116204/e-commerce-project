@@ -1,0 +1,251 @@
+/* ── BrandInfoComponent ── */
+
+.brand-info {
+    padding: 0;
+}
+
+.brand-info__filters {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    align-items: start;
+}
+
+/* Responsive cho màn hình nhỏ */
+@media (max-width: 1024px) {
+    .brand-info__filters {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 640px) {
+    .brand-info__filters {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ── Actions ── */
+.brand-info__actions {
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;        /* xuống dòng khi không đủ chỗ */
+    gap: 10px;
+    margin-top: 16px;
+}
+
+@media (max-width: 480px) {
+    .brand-info__actions {
+        justify-content: stretch;
+    }
+
+    .brand-info__actions > * {
+        flex: 1;
+        min-width: 0;
+        justify-content: center;
+    }
+}
+
+/* ── Card ── */
+.brand-card {
+    background: #ffffff;
+    border-radius: 10px;
+    padding: 10px 20px 24px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+}
+
+/* ── Card title với thanh xanh bên trái ── */
+.brand-card__title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 16px;
+    font-weight: 700;
+    color: #1f2937;
+    margin: 0 0 12px;
+}
+
+.brand-card__title::before {
+    content: "";
+    width: 4px;
+    height: 16px;
+    background: #2563eb;
+    border-radius: 2px;
+    flex-shrink: 0;
+}
+
+.brand-info__btn-img-icon {
+    width: 16px;
+    height: 16px;
+    object-fit: contain;
+    filter: brightness(0) invert(1);
+}
+
+/* ── Column cell styles (used in AdminTable column renderers) ── */
+.brand-info__logo {
+    width: 36px;
+    height: 36px;
+    object-fit: contain;
+    border-radius: 6px;
+    border: 1px solid #e5e7eb;
+    background: #fff;
+    padding: 3px;
+}
+
+.brand-info__logo-preview {
+    width: 64px;
+    height: 64px;
+    object-fit: contain;
+    border-radius: 8px;
+    border: 1px solid #e5e7eb;
+    background: #fff;
+    padding: 4px;
+    align-self: flex-start;
+}
+
+.brand-info__slug {
+    background: #f1f5f9;
+    color: #475569;
+    padding: 2px 7px;
+    border-radius: 4px;
+    font-size: 12.5px;
+    font-family: "Fira Mono", "Consolas", monospace;
+}
+
+.brand-info__none {
+    color: #d1d5db;
+}
+
+.brand-info__time {
+    color: #6b7280;
+    font-size: 12.5px;
+    white-space: nowrap;
+}
+
+.brand-info__badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.brand-info__badge--active {
+    background: #dcfce7;
+    color: #16a34a;
+}
+
+.brand-info__badge--inactive {
+    background: #fee2e2;
+    color: #dc2626;
+}
+
+/* ── Field ── */
+.brand-field {
+    margin-bottom: 18px;
+}
+
+.brand-field label {
+    display: block;
+    font-size: 13.5px;
+    font-weight: 600;
+    color: #374151;
+    margin-bottom: 2px;
+}
+
+.brand-field__required {
+    color: #ef4444;
+    margin-left: 2px;
+}
+
+.brand-field input {
+    width: 100%;
+    padding: 10px 12px;
+    font-size: 14px;
+    font-family: inherit;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    outline: none;
+    transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.brand-field input:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+.brand-field__hint {
+    font-size: 12px;
+    color: #9ca3af;
+    margin-top: 5px;
+}
+
+/* ── Actions ── */
+.brand-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 8px;
+}
+
+.brand-btn {
+    flex: 1;
+    padding: 10px 16px;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: inherit;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.15s, opacity 0.15s;
+}
+
+.brand-btn--primary {
+    background: #2563eb;
+    color: #fff;
+}
+
+.brand-btn--primary:hover {
+    background: #1d4ed8;
+}
+
+.brand-btn--secondary {
+    background: #fff;
+    color: #374151;
+    border: 1px solid #d1d5db;
+}
+
+.brand-btn--secondary:hover {
+    background: #f3f4f6;
+}
+
+/* Toast Container cố định ở góc trên phải */
+.brand-info-toast-container {
+    position: fixed;
+    top: 24px;
+    right: 24px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    pointer-events: none;
+}
+
+.brand-info-toast-container > * {
+    pointer-events: auto;
+}
+
+.brand-info__badge--clickable {
+    cursor: pointer;
+    transition: opacity 0.2s, filter 0.2s;
+    user-select: none;
+}
+
+.brand-info__badge--clickable:hover {
+    opacity: 0.8;
+    filter: brightness(0.95);
+}
+
+.brand-info__badge--clickable:active {
+    opacity: 0.6;
+}

@@ -1,0 +1,105 @@
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 28px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, border-color 0.2s, opacity 0.2s;
+  white-space: nowrap;
+  user-select: none;
+}
+
+/* Variant đỏ (primary) */
+.btn--primary {
+  background: #d0021b;
+  color: #ffffff;
+  border: 2px solid #d0021b;
+}
+
+.btn--primary:hover {
+  background: #b00217;
+  border-color: #b00217;
+}
+
+.btn--primary:active {
+  background: #90011a;
+  border-color: #90011a;
+}
+
+/* Variant trắng (outline) */
+.btn--outline {
+  background: #ffffff;
+  color: #1a1a2e;
+  border: 1.5px solid #d1d5db;
+}
+
+.btn--outline:hover {
+  background: #f9fafb;
+  border-color: #9ca3af;
+}
+
+.btn--outline:active {
+  background: #f3f4f6;
+}
+
+/* Variant xanh (blue) */
+.btn--blue {
+  background: #1A73E8;
+  color: #ffffff;
+  border: 1.5px solid #1A73E8;
+}
+
+.btn--blue:hover {
+  background: #1557B0;
+  border-color: #1557B0;
+}
+
+.btn--blue:active {
+  background: #124A96;
+}
+
+/* Disabled */
+.btn--disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Icon bên trái */
+.btn-icon {
+  display: flex;
+  align-items: center;
+}
+
+/* Modifier kích thước nhỏ */
+.btn--sm {
+  padding: 8px 18px;
+  font-size: 14px;
+  border-radius: 8px;
+}
+
+.btn--sm .btn-icon svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Variant trong suốt (ghost) - Modern Cancel Button */
+.btn--ghost {
+  background: transparent;
+  color: #4b5563;
+  border: 1.5px solid transparent;
+}
+
+.btn--ghost:hover {
+  background: #f3f4f6;
+  color: #1f2937;
+}
+
+.btn--ghost:active {
+  background: #e5e7eb;
+}
