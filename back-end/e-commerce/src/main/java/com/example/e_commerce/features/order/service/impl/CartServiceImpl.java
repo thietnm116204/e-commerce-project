@@ -43,6 +43,11 @@ public class CartServiceImpl implements CartService {
         redisTemplate.opsForHash().increment(cartKey, request.getProductId().toString(), request.getQuantity());
         redisTemplate.expire(cartKey, CART_TTL);
 
+        // Lưu thời gian thêm vào ZSET để sort
+        String orderKey = cartKey + ":order";
+        redisTemplate.opsForZSet().add(orderKey, request.getProductId().toString(), System.currentTimeMillis());
+        redisTemplate.expire(orderKey, CART_TTL);
+
         // Kiểm tra tồn kho sau khi cộng
         Object rawQuantity = redisTemplate.opsForHash().get(cartKey, request.getProductId().toString());
         if (rawQuantity != null) {
@@ -77,7 +82,14 @@ public class CartServiceImpl implements CartService {
         }
 
         List<UUID> productIds = cartEntries.keySet().stream()
-                .map(k -> UUID.fromString(k.toString()))
+                .map(k -> {
+                    try {
+                        return UUID.fromString(k.toString());
+                    } catch (IllegalArgumentException e) {
+                        return null;
+                    }
+                })
+                .filter(java.util.Objects::nonNull)
                 .collect(Collectors.toList());
 
         List<Product> products = productRepository.findAllById(productIds);
@@ -89,8 +101,21 @@ public class CartServiceImpl implements CartService {
         int totalItems = 0;
 
         for (Map.Entry<Object, Object> entry : cartEntries.entrySet()) {
-            UUID productId = UUID.fromString(entry.getKey().toString());
-            int quantity = Integer.parseInt(entry.getValue().toString());
+            UUID productId;
+            try {
+                productId = UUID.fromString(entry.getKey().toString());
+            } catch (IllegalArgumentException e) {
+                redisTemplate.opsForHash().delete(cartKey, entry.getKey().toString());
+                continue;
+            }
+            
+            int quantity;
+            try {
+                quantity = Integer.parseInt(entry.getValue().toString());
+            } catch (NumberFormatException e) {
+                redisTemplate.opsForHash().delete(cartKey, entry.getKey().toString());
+                continue;
+            }
 
             Product product = productMap.get(productId);
             // Xóa khỏi giỏ nếu DB không còn
@@ -123,6 +148,16 @@ public class CartServiceImpl implements CartService {
             totalItems += quantity;
         }
 
+        // Lấy danh sách sắp xếp từ ZSET (mới nhất lên đầu)
+        String orderKey = cartKey + ":order";
+        Set<String> orderedIds = redisTemplate.opsForZSet().reverseRange(orderKey, 0, -1);
+        List<String> orderList = orderedIds != null ? new ArrayList<>(orderedIds) : new ArrayList<>();
+
+        items.sort(Comparator.comparingInt(item -> {
+            int idx = orderList.indexOf(item.getProductId().toString());
+            return idx == -1 ? Integer.MAX_VALUE : idx;
+        }));
+
         return CartResponse.builder()
                 .cartId(userId)
                 .items(items)
@@ -135,6 +170,7 @@ public class CartServiceImpl implements CartService {
     public CartResponse removeCartItem(UUID userId, UUID cartItemId) {
         String cartKey = getCartKey(userId);
         redisTemplate.opsForHash().delete(cartKey, cartItemId.toString());
+        redisTemplate.opsForZSet().remove(cartKey + ":order", cartItemId.toString());
         return getMyCart(userId);
     }
 
@@ -150,6 +186,11 @@ public class CartServiceImpl implements CartService {
         String cartKey = getCartKey(userId);
         redisTemplate.opsForHash().put(cartKey, cartItemId.toString(), String.valueOf(request.getQuantity()));
         redisTemplate.expire(cartKey, CART_TTL);
+        
+        // Cập nhật lại ZSET để reset time? Không, update số lượng thì không đổi thứ tự thêm.
+        // Chỉ kéo dài TTL
+        String orderKey = cartKey + ":order";
+        redisTemplate.expire(orderKey, CART_TTL);
 
         return getMyCart(userId);
     }

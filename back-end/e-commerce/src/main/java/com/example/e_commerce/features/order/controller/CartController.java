@@ -29,6 +29,7 @@ public class CartController {
             @AuthenticationPrincipal UserPrincipal currentUser,
             @Valid @RequestBody AddToCartRequest request
     ) {
+        System.out.println("DEBUG: Reached addToCart with userId " + currentUser.getUserId());
         return ResponseEntity.ok(
                 ApiResponse.<CartResponse>builder()
                         .code(HttpStatus.OK.value())
@@ -41,11 +42,14 @@ public class CartController {
     public ResponseEntity<ApiResponse<CartResponse>> getMyCart(
             @AuthenticationPrincipal UserPrincipal currentUser
     ) {
+        System.out.println("DEBUG: Reached getMyCart with userId " + currentUser.getUserId());
+        CartResponse cartResponse = cartService.getMyCart(currentUser.getUserId());
+        System.out.println("DEBUG: cartResponse = " + cartResponse);
         return ResponseEntity.ok(
                 ApiResponse.<CartResponse>builder()
                         .code(HttpStatus.OK.value())
                         .message("Lấy giỏ hàng thành công")
-                        .data(cartService.getMyCart(currentUser.getUserId()))
+                        .data(cartResponse)
                         .build()
         );
     }

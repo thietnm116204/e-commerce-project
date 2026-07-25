@@ -8,16 +8,18 @@ import com.example.e_commerce.features.order.dto.request.payment.CreatePaymentUr
 import com.example.e_commerce.features.order.dto.request.payment.CreatePaymentUrlResponse;
 import com.example.e_commerce.features.order.dto.response.order.OrderResponse;
 import com.example.e_commerce.features.order.dto.response.payment.PaymentResponse;
-import com.example.e_commerce.features.order.entity.cart.CartItem;
 import com.example.e_commerce.features.order.entity.order.Order;
 import com.example.e_commerce.features.order.entity.order.OrderItem;
 import com.example.e_commerce.features.order.entity.payment.Payment;
 import com.example.e_commerce.features.order.mapper.OrderMapper;
-import com.example.e_commerce.features.order.repository.CartItemRepository;
 import com.example.e_commerce.features.order.repository.OrderRepository;
 import com.example.e_commerce.features.order.repository.PaymentRepository;
+import com.example.e_commerce.features.order.service.OrderCancelHelper;
+import com.example.e_commerce.features.order.service.CartService;
 import com.example.e_commerce.features.order.service.OrderService;
 import com.example.e_commerce.features.order.service.VnpayService;
+import com.example.e_commerce.features.order.dto.response.cart.CartResponse;
+import com.example.e_commerce.features.order.dto.response.cart.CartItemResponse;
 import com.example.e_commerce.features.product.entity.Product;
 import com.example.e_commerce.features.product.entity.ProductImage;
 import com.example.e_commerce.features.product.repository.ProductRepository;
@@ -41,13 +43,14 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class OrderServiceImpl implements OrderService {
 
-    private final CartItemRepository cartItemRepository;
+    private final CartService cartService;
     private final UserRepository userRepository;
     private final ProductRepository productRepository;
     private final OrderRepository orderRepository;
     private final PaymentRepository paymentRepository;
     private final OrderMapper orderMapper;
     private final VnpayService vnpayService;
+    private final OrderCancelHelper orderCancelHelper;
 
     @Override
     @Transactional
@@ -55,23 +58,20 @@ public class OrderServiceImpl implements OrderService {
         User currentUser = userRepository.findById(userId)
                 .orElseThrow(() -> new AppException(ErrorCode.USER_NOT_FOUD));
 
-        List<CartItem> selectedItems = cartItemRepository.findAllByCartItemIdIn(request.getCartItemIds());
+        CartResponse cartResponse = cartService.getMyCart(userId);
+        List<CartItemResponse> selectedItems = cartResponse.getItems().stream()
+                .filter(item -> request.getCartItemIds().contains(item.getCartItemId()))
+                .collect(java.util.stream.Collectors.toList());
 
         if (selectedItems.isEmpty()) {
             throw new AppException(ErrorCode.CART_ITEM_NOT_FOUND);
         }
 
-        boolean belongsToUser = selectedItems.stream()
-                .allMatch(ci -> ci.getCart().getUser().getUserId().equals(userId));
-        if (!belongsToUser) {
-            throw new AppException(ErrorCode.CART_ACCESS_DENIED);
-        }
-
         List<OrderItem> orderItems = new ArrayList<>();
         BigDecimal totalAmount = BigDecimal.ZERO;
 
-        for (CartItem cartItem : selectedItems) {
-            Product product = productRepository.findByIdForUpdate(cartItem.getProduct().getProductId())
+        for (CartItemResponse cartItem : selectedItems) {
+            Product product = productRepository.findByIdForUpdate(cartItem.getProductId())
                     .orElseThrow(() -> new AppException(ErrorCode.PRODUCT_NOT_FOUD));
 
             if (!Boolean.TRUE.equals(product.getIsActive())) {
@@ -124,7 +124,10 @@ public class OrderServiceImpl implements OrderService {
 
         Order saved = orderRepository.save(order);
 
-        cartItemRepository.deleteAll(selectedItems);
+        // Xoá các sản phẩm đã mua khỏi giỏ hàng Redis
+        for (CartItemResponse cartItem : selectedItems) {
+            cartService.removeCartItem(userId, cartItem.getCartItemId());
+        }
 
         Payment payment = Payment.builder()
                 .order(saved)
@@ -234,13 +237,7 @@ public class OrderServiceImpl implements OrderService {
             throw new RuntimeException("Chỉ có thể hủy đơn hàng đang ở trạng thái chờ thanh toán");
         }
 
-        order.setOrderStatus(OrderStatus.CANCELLED);
-        orderRepository.save(order);
-
-        paymentRepository.findByOrder_OrderId(orderId).ifPresent(payment -> {
-            payment.setPaymentStatus(PaymentStatus.FAILED);
-            paymentRepository.save(payment);
-        });
+        orderCancelHelper.cancelOrder(order);
     }
 
     // ── Private helpers ──────────────────────────────────────────────────────

@@ -23,7 +23,7 @@ export default function VnpayReturnPage() {
       setCountdown((c) => {
         if (c <= 1) {
           clearInterval(interval);
-          navigate("/cart");
+          navigate("/orders");
         }
         return c - 1;
       });
@@ -53,9 +53,9 @@ export default function VnpayReturnPage() {
               Tự động chuyển về trang đơn hàng sau <strong>{countdown}</strong> giây...
             </p>
             <div className="vnpay-return-actions">
-              <Link to="/cart" className="btn-vnpay-primary">
+              <Link to="/orders" className="btn-vnpay-primary">
                 <img src={donhangIcon} alt="" className="btn-vnpay-icon" />
-                Xem đơn hàng ngay
+                Xem lịch sử đơn hàng
               </Link>
             </div>
           </>
@@ -82,7 +82,7 @@ export default function VnpayReturnPage() {
             <div className="vnpay-return-actions">
               <Link to="/cart" className="btn-vnpay-secondary">
                 <img src={reloadIcon} alt="" className="btn-vnpay-icon dark" />
-                Quay lại giỏ hàng
+                Thử lại thanh toán (Giỏ hàng)
               </Link>
               <Link to="/product" className="btn-vnpay-primary">
                 Tiếp tục mua sắm

@@ -231,10 +231,16 @@ export default function ProductDetailComponent() {
               note: formData.note,
               paymentMethod: formData.paymentMethod || "CASH"
             };
-            await orderApi.buyNow(payload);
+            const res = await orderApi.buyNow(payload);
+            const paymentData = res?.data;
 
-            addToast("success", "Mua hàng thành công!");
-            setIsModalOpen(false);
+            if (formData.paymentMethod === 'VNPAY' && paymentData?.vnpayUrl) {
+              setIsModalOpen(false);
+              window.location.href = paymentData.vnpayUrl;
+            } else {
+              addToast("success", "Mua hàng thành công!");
+              setIsModalOpen(false);
+            }
           } catch (err) {
             console.error("Lỗi khi mua hàng:", err);
             addToast("error", "Có lỗi xảy ra khi mua hàng!");

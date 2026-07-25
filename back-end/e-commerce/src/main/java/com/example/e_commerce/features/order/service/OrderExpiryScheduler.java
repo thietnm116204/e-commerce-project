@@ -4,7 +4,6 @@ import com.example.e_commerce.features.order.entity.order.Order;
 import com.example.e_commerce.features.order.repository.OrderRepository;
 import com.example.e_commerce.features.order.repository.PaymentRepository;
 import com.example.e_commerce.shared.status.OrderStatus;
-import com.example.e_commerce.shared.status.PaymentStatus;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -31,6 +30,7 @@ public class OrderExpiryScheduler {
 
     private final OrderRepository orderRepository;
     private final PaymentRepository paymentRepository;
+    private final OrderCancelHelper orderCancelHelper;
 
     /**
      * Chạy mỗi 5 phút, tìm đơn AWAITING_PAYMENT đã tồn tại > 15 phút và hủy chúng.
@@ -51,16 +51,7 @@ public class OrderExpiryScheduler {
                 expiredOrders.size());
 
         for (Order order : expiredOrders) {
-            order.setOrderStatus(OrderStatus.CANCELLED);
-            orderRepository.save(order);
-
-            paymentRepository.findByOrder_OrderId(order.getOrderId()).ifPresent(payment -> {
-                if (payment.getPaymentStatus() == PaymentStatus.PENDING) {
-                    payment.setPaymentStatus(PaymentStatus.FAILED);
-                    paymentRepository.save(payment);
-                }
-            });
-
+            orderCancelHelper.cancelOrder(order);
             log.info("[OrderExpiryScheduler] Đã hủy đơn hàng hết hạn: {}", order.getOrderId());
         }
     }

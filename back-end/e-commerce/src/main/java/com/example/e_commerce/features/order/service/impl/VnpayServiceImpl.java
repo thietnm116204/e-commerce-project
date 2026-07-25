@@ -9,6 +9,7 @@ import com.example.e_commerce.features.order.entity.payment.Payment;
 import com.example.e_commerce.features.order.entity.payment.VnpayProperties;
 import com.example.e_commerce.features.order.repository.OrderRepository;
 import com.example.e_commerce.features.order.repository.PaymentRepository;
+import com.example.e_commerce.features.order.service.OrderCancelHelper;
 import com.example.e_commerce.features.order.service.VnpayService;
 import com.example.e_commerce.shared.status.OrderStatus;
 import com.example.e_commerce.shared.status.PaymentMethod;
@@ -41,6 +42,7 @@ public class VnpayServiceImpl implements VnpayService {
     private final VnpayProperties vnpayProperties;
     private final OrderRepository orderRepository;
     private final PaymentRepository paymentRepository;
+    private final OrderCancelHelper orderCancelHelper;
 
     @Override
     @Transactional
@@ -209,12 +211,8 @@ public class VnpayServiceImpl implements VnpayService {
 
             return new VerificationResult("00", "Xác nhận thanh toán thành công", orderId, true);
         } else {
-            payment.setPaymentStatus(PaymentStatus.FAILED);
-            paymentRepository.save(payment);
-
-            // IPN thất bại / bị hủy → CANCELLED
-            order.setOrderStatus(OrderStatus.CANCELLED);
-            orderRepository.save(order);
+            // IPN thất bại / bị hủy → CANCELLED & phục hồi tồn kho/giỏ hàng
+            orderCancelHelper.cancelOrder(order);
 
             return new VerificationResult("00", "Giao dịch thất bại hoặc bị huỷ (đã ghi nhận)", orderId, false);
         }
