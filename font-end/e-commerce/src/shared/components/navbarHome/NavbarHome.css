@@ -285,12 +285,14 @@
     font-size: 20px;
   }
   .user-dropdown-menu {
-    right: -16px;
-    width: 100vw;
-    border-radius: 0 0 16px 16px;
+    right: 0;
+    width: 260px;
+    max-width: calc(100vw - 32px);
+    border-radius: 12px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
   }
   .user-dropdown-menu::before {
-    display: none;
+    display: block;
+    right: 18px;
   }
 }
