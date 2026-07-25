@@ -5,6 +5,7 @@ import { addToCartAsync } from '../../../../shared/store/cartSlice';
 import { productApi } from '../../api/productApi';
 import { orderApi } from '../../api/orderApi';
 import Toast from '../../../../shared/components/Toast';
+import Loading from '../../../../shared/components/Loading/Loading';
 import OrderModal from '../order/OrderModal';
 import './ProductDetailComponent.css';
 
@@ -73,12 +74,7 @@ export default function ProductDetailComponent() {
   };
 
   if (loading) {
-    return (
-      <div className="loading-container">
-        <div className="spinner"></div>
-        <p>Đang tải thông tin sản phẩm...</p>
-      </div>
-    );
+    return <Loading overlay={true} text="Đang tải thông tin sản phẩm..." />;
   }
 
   if (error || !product) {

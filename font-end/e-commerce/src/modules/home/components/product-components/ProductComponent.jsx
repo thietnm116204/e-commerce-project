@@ -8,6 +8,7 @@ import { brandApi } from '../../api/brandApi';
 import { productApi } from '../../api/productApi';
 import { orderApi } from '../../api/orderApi';
 import Toast from '../../../../shared/components/Toast';
+import Loading from '../../../../shared/components/Loading/Loading';
 
 export default function ProductComponent() {
   const location = useLocation();
@@ -23,7 +24,7 @@ export default function ProductComponent() {
   const [selectedBrands, setSelectedBrands] = useState([]);
   const [sortOrder, setSortOrder] = useState("");
   const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   
   const [toasts, setToasts] = useState([]);
   const user = useSelector((state) => state.auth.user);
@@ -78,9 +79,12 @@ export default function ProductComponent() {
           
           // Gọi API fetch products luôn sau khi đã có categories và selectedCats
           fetchProducts(0, initialSelected, res.data);
+        } else {
+          setLoading(false);
         }
       } catch (error) {
         console.error("Failed to fetch root categories:", error);
+        setLoading(false);
       }
     };
     
@@ -101,6 +105,7 @@ export default function ProductComponent() {
 
   const fetchProducts = async (page = 0, initialCats = null) => {
     try {
+      setLoading(true);
       const catsToUse = initialCats !== null ? initialCats : selectedCats;
       
       const payload = {
@@ -130,6 +135,8 @@ export default function ProductComponent() {
       }
     } catch (error) {
       console.error("Failed to fetch products:", error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -457,7 +464,26 @@ export default function ProductComponent() {
         </div>
 
         {/* Product Grid */}
-        {products.length === 0 ? (
+        {loading ? (
+          <div className="product-grid">
+            {[...Array(9)].map((_, idx) => (
+              <div className="product-card" key={`skeleton-${idx}`}>
+                <div className="card-thumb skeleton-box" style={{ borderRadius: '12px' }}></div>
+                <div className="card-info">
+                  <div className="skeleton-box" style={{ width: '40%', height: '14px', marginBottom: '8px', borderRadius: '4px' }}></div>
+                  <div className="skeleton-box" style={{ width: '80%', height: '20px', marginBottom: '8px', borderRadius: '4px' }}></div>
+                  <div className="skeleton-box" style={{ width: '60%', height: '14px', marginBottom: '16px', borderRadius: '4px' }}></div>
+                  <div className="card-bottom">
+                    <div className="card-price-wrap" style={{ flex: 1 }}>
+                      <div className="skeleton-box" style={{ width: '70%', height: '20px', borderRadius: '4px' }}></div>
+                    </div>
+                    <div className="skeleton-box" style={{ width: '32px', height: '32px', borderRadius: '50%' }}></div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : products.length === 0 ? (
           <div className="empty-products" style={{ textAlign: 'center', padding: '60px 20px', color: '#6B7280' }}>
             <div style={{ fontSize: '48px', marginBottom: '16px' }}>👟</div>
             <h3 style={{ fontSize: '20px', fontWeight: '600', color: '#111827', marginBottom: '8px' }}>Không có sản phẩm nào</h3>
