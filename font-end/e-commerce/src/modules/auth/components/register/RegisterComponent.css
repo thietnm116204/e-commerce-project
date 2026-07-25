@@ -41,6 +41,11 @@
     .register-row {
         grid-template-columns: 1fr;
     }
+    .register-section {
+        width: 100%;
+        max-width: 100%;
+        padding: 16px;
+    }
 }
 
 /* Ẩn icon lịch native của browser */

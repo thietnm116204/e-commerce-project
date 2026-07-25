@@ -17,6 +17,7 @@ export default function NavbarHome() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const dropdownRef = useRef(null);
   
   const [categories, setCategories] = useState([]);
@@ -71,14 +72,35 @@ export default function NavbarHome() {
   return (
     <div className="navbar-home-wrapper">
       <nav className="navbar-home">
-        <Link to="/" className="logo">mova.</Link>
+        <div className="navbar-home-left">
+          <button 
+            className="mobile-menu-toggle" 
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          >
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              {isMobileMenuOpen ? (
+                <>
+                  <line x1="18" y1="6" x2="6" y2="18"></line>
+                  <line x1="6" y1="6" x2="18" y2="18"></line>
+                </>
+              ) : (
+                <>
+                  <line x1="3" y1="12" x2="21" y2="12"></line>
+                  <line x1="3" y1="6" x2="21" y2="6"></line>
+                  <line x1="3" y1="18" x2="21" y2="18"></line>
+                </>
+              )}
+            </svg>
+          </button>
+          <Link to="/" className="logo">mova.</Link>
+        </div>
         
-        <ul className="nav-links">
-          <li><Link to="/">Trang chủ</Link></li>
-          <li><Link to="/product">Sản Phẩm</Link></li>
+        <ul className={`nav-links ${isMobileMenuOpen ? 'open' : ''}`}>
+          <li><Link to="/" onClick={() => setIsMobileMenuOpen(false)}>Trang chủ</Link></li>
+          <li><Link to="/product" onClick={() => setIsMobileMenuOpen(false)}>Sản Phẩm</Link></li>
           {categories.map((cat) => (
             <li key={cat.categoryId}>
-              <Link to={`/product?category=${cat.categoryId}`}>{cat.categoryName}</Link>
+              <Link to={`/product?category=${cat.categoryId}`} onClick={() => setIsMobileMenuOpen(false)}>{cat.categoryName}</Link>
             </li>
           ))}
         </ul>

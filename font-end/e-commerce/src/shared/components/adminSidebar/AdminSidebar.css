@@ -35,3 +35,20 @@
     font-weight: 700;
     font-size: 15px;
 }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 768px) {
+    .sidebar {
+        position: absolute;
+        z-index: 100;
+        height: 100vh;
+        left: 0;
+        top: 0;
+        transform: translateX(0);
+        transition: transform 0.3s ease;
+    }
+    .sidebar--closed {
+        margin-left: 0;
+        transform: translateX(-100%);
+    }
+}

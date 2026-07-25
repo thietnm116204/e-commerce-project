@@ -224,3 +224,73 @@
 .dropdown-action-btn.logout-btn:hover {
   color: #DC2626;
 }
+
+/* ---------- Responsive ---------- */
+/* ---------- Hamburger Toggle Button ---------- */
+.navbar-home-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.mobile-menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  color: var(--ink);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 768px) {
+  .navbar-home {
+    padding: 16px;
+    flex-wrap: wrap;
+    gap: 16px;
+    position: relative; /* relative for dropdown absolute positioning */
+  }
+  
+  .mobile-menu-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Mobile drawer / dropdown for nav-links */
+  .navbar-home .nav-links {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: #ffffff;
+    flex-direction: column;
+    padding: 16px;
+    gap: 16px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    border-radius: 0 0 16px 16px;
+    border-top: 1px solid var(--line);
+    
+    /* Hidden by default */
+    display: none;
+    order: unset; /* unset flex order since we use absolute pos */
+  }
+  
+  /* Open state */
+  .navbar-home .nav-links.open {
+    display: flex;
+  }
+  
+  .navbar-home .logo {
+    font-size: 20px;
+  }
+  .user-dropdown-menu {
+    right: -16px;
+    width: 100vw;
+    border-radius: 0 0 16px 16px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  }
+  .user-dropdown-menu::before {
+    display: none;
+  }
+}

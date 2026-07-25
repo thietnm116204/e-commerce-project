@@ -11,6 +11,7 @@
   background: #fff;
   border-radius: 16px;
   padding: 24px;
+  box-sizing: border-box; /* Fix horizontal overflow on mobile */
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
   position: sticky;
   top: 100px;
@@ -598,5 +599,30 @@
   }
   100% {
     background-position: -200% 0;
+  }
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 768px) {
+  .product-layout {
+    flex-direction: column;
+    gap: 16px;
+  }
+  .product-sidebar {
+    width: 100%;
+    position: static;
+    margin-bottom: 24px;
+  }
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  .product-card {
+    padding: 12px;
+  }
+}
+@media (max-width: 480px) {
+  .product-grid {
+    grid-template-columns: 1fr;
   }
 }

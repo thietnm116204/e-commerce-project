@@ -509,3 +509,105 @@
   font-size: 13px;
   color: var(--muted);
 }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 768px) {
+  .home-container .hero {
+    margin: 16px 16px 40px;
+    padding: 32px 24px;
+    min-height: auto;
+    flex-direction: column;
+    text-align: center;
+    display: flex;
+  }
+  .home-container .hero-copy {
+    padding: 0;
+    max-width: 100%;
+    order: 1;
+  }
+  .home-container .hero-copy h1 {
+    font-size: 40px;
+  }
+  .home-container .hero-copy p {
+    margin: 0 auto 34px;
+  }
+  .home-container .btn-row {
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .home-container .stat-row {
+    justify-content: center;
+    gap: 24px;
+    margin-top: 32px;
+  }
+  .home-container .hero-shoe {
+    position: relative;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    margin: 0 auto;
+    transform: rotate(0);
+    order: 2;
+  }
+  .home-container .float-tag {
+    position: absolute;
+    margin: 0;
+    transform: translateX(-50%);
+    z-index: 4;
+  }
+  .home-container .float-tag.price {
+    left: 50%;
+    bottom: 10%;
+  }
+  .home-container .float-tag.rating {
+    left: 50%;
+    top: 60%; 
+  }
+  .home-container .cats {
+    padding: 10px 16px 40px;
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .home-container .section {
+    padding: 16px 16px 40px;
+  }
+  .home-container .grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+  .home-container .promo {
+    margin: 0 16px 40px;
+    padding: 32px 24px;
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .home-container .promo-copy p {
+    margin: 0 auto 24px;
+  }
+  .home-container .foot-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .home-container footer {
+    padding: 32px 16px;
+  }
+  .home-container .section-head h2 {
+    font-size: 24px;
+  }
+  .home-container .section-head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .home-container .foot-bottom {
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .home-container .grid {
+    grid-template-columns: 1fr;
+  }
+}

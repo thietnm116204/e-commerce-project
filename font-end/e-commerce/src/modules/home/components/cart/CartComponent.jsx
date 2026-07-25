@@ -54,23 +54,25 @@ function CartRow({ item, onUpdateQty, onRemove, isSelected, onToggleSelect }) {
           onChange={() => onToggleSelect(uniqueId)}
         />
       </div>
-      <div className="cart-row__product">
-        <div className="cart-row__img">
-          {imageUrl ? <img src={imageUrl} alt={item.productName} /> : <span>🛍</span>}
-        </div>
-        <div className="cart-row__name-wrap">
-          <p className="cart-row__name">{item.productName}</p>
-          <p className="cart-row__price-unit">{fmt(unitPrice)} / sản phẩm</p>
+      
+      <div className="cart-row__img">
+        {imageUrl ? <img src={imageUrl} alt={item.productName} /> : <span>🛍</span>}
+      </div>
+
+      <div className="cart-row__details">
+        <p className="cart-row__name">{item.productName}</p>
+        <p className="cart-row__price-unit">{fmt(unitPrice)} / sản phẩm</p>
+        
+        <div className="cart-row__actions-mobile">
+          <div className="qty-stepper">
+            <button onClick={() => onUpdateQty(uniqueId, item.quantity - 1)} disabled={item.quantity <= 1}>−</button>
+            <span>{item.quantity}</span>
+            <button onClick={() => onUpdateQty(uniqueId, item.quantity + 1)}>+</button>
+          </div>
+          <div className="cart-row__subtotal">{fmt(subtotal)}</div>
         </div>
       </div>
-      <div className="cart-row__qty">
-        <div className="qty-stepper">
-          <button onClick={() => onUpdateQty(uniqueId, item.quantity - 1)} disabled={item.quantity <= 1}>−</button>
-          <span>{item.quantity}</span>
-          <button onClick={() => onUpdateQty(uniqueId, item.quantity + 1)}>+</button>
-        </div>
-      </div>
-      <div className="cart-row__subtotal">{fmt(subtotal)}</div>
+
       <div className="cart-row__action">
         <button className="btn-delete" onClick={() => onRemove(uniqueId)}>
           <img src={trashIcon} alt="Xóa" />

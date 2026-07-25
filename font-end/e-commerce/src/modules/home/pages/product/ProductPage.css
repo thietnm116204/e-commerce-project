@@ -9,4 +9,11 @@
   max-width: 1440px;
   margin: 0 auto;
   padding: 32px 56px;
+  box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+  .product-page-main {
+    padding: 16px;
+  }
 }
